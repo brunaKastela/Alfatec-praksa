@@ -1,0 +1,42 @@
+<%- include('layout/header.ejs') %>	
+
+
+<link rel="stylesheet" type="text/css" href="styles/table.scss" />
+
+<div class="main-container">
+	<div class="add-item-container">
+		<button>Add souvenier</button>
+	</div>
+	<div class="table-container">
+		<table class="main-table">
+		
+			<tr style='text-align:left;'>
+				<th>ID</th>
+				<th>Bar code</th>
+				<th>Name</th>
+				<th>Actions</th>
+			</tr>
+		
+			<% if (tableData) { %>
+			<% tableData.forEach(function(product){ %>
+				<tr style='text-align:left;'>
+					<td><%= product.id %></td>
+					<td><%= product.barCode %></td>
+					<td><%= product.name %></td>
+					<td>
+						<div style="float:left">
+							<a href='Edit/<%= product.id %>'>Edit</a> &nbsp;
+							<form class="table-form" method="post" action="<%= product.productImageUrl %>">
+								<input type="submit" name="delete" value='Delete' onClick="return confirm('Are you sure you want to delete item?')" />
+							</form>
+						</div>
+					</td>
+				</tr>
+			<% }) %>
+			<% } %>
+		
+		</table>
+	</div>
+</div>
+
+<%- include('layout/footer.ejs') %>
