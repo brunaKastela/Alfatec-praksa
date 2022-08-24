@@ -3,6 +3,7 @@ import * as path from 'path'
 import { fileURLToPath } from 'url';
 import router from './routes/products.routes.js';
 import {initiDB} from './db.js'
+import { MongoClient } from 'mongodb'
 
 // Initiating express
 var app = express();
