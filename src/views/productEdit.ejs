@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Souvenir Shop</title>
+</head>
+   <body>
+      <main class="main">
+          <div>
+              <div>
+                  <div>Product Information </div>
+              </div>
+              <div class="product-box">
+                  <div class="product-view">
+                     <img class="product-view-image" src=<%=product.productImageUrl%>></img>
+                     <div class="product-view-text">
+                           <div><%=product.name%></div>
+                           <hr>
+                           <div>Price: <%=product.price%> kn</span></div>
+                           <div>Color: <%=product.color%></span></div>
+                           <div>Quantity: <%=product.quantity%></span></div>
+                     </div>
+                  </div>
+              </div>
+      </main>
+   </body>
+</html>
