@@ -1,42 +1,48 @@
 <%- include('layout/header.ejs') %>	
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="styles/main.css" />
+	<script type = "text/javascript">
+	</script>
+	<title>Souveniers accounting</title>
+</head>
 
-<link rel="stylesheet" type="text/css" href="styles/table.scss" />
-
-<div class="main-container">
-	<div class="add-item-container">
-		<button onclick="window.location.href='AddProduct'">Add souvenier</button>
-	</div>
-	<div class="table-container">
-		<table class="main-table">
-		
-			<tr style='text-align:left;'>
-				<th>ID</th>
-				<th>Bar code</th>
-				<th>Name</th>
-				<th>Actions</th>
-			</tr>
-		
+<body>
+	<div class="body-container">
+		<div class="add-item-container">
+			<button onclick="window.location.href='AddProduct'">Add souvenier</button>
+		</div>
+		<div class="main-container">
 			<% if (tableData) { %>
-			<% tableData.forEach(function(product){ %>
-				<tr style='text-align:left;'>
-					<td><%= product.id %></td>
-					<td><%= product.barCode %></td>
-					<td><%= product.name %></td>
-					<td>
-						<div style="float:left">
-							<a href='Edit/<%= product.id %>'>Edit</a> &nbsp;
-							<form class="table-form" method="post" action="<%= product.productImageUrl %>">
-								<input type="submit" name="delete" value='Delete' onClick="return confirm('Are you sure you want to delete item?')" />
-							</form>
+				<% tableData.forEach(function(product){ %>
+					<div class="product-container">
+						<img class="product-view-image" src=<%=product.productImageUrl%>></img>
+						<div>
+							<div>Name:<%= product.name %></div>
+							<div>ID:<%= product.id %></div>
+							<div>BarCode:<%= product.barCode %></div>
+							<div class="'buttons">
+								<a href='Edit/<%= product.id %>'>Edit</a>
+								<!-- <button name="delete" value='Delete' onClick="helper.deleteProduct('<%=product.id%>')">Delete</button> -->
+								<form action="" class="table-form" method="delete">
+									<input type="submit" name="delete" value='Delete' onclick="return confirm('Are you sure you want to delete item?')"/>
+									<!-- <a href="RemoveProduct/<%= product.id %>" onclick="return confirm('Are you sure you want to delete item?')">Delete</a> -->
+									<!-- <input type="submit" name="delete" value='Delete' onclick="return confirm('Are you sure you want to delete item?')"/> -->
+								</form>
+							</div>
 						</div>
-					</td>
-				</tr>
-			<% }) %>
+					</div>
+				<% }) %>
 			<% } %>
-		
-		</table>
+		</div>
 	</div>
-</div>
+
+</body>
+</html>
 
 <%- include('layout/footer.ejs') %>

@@ -1,122 +1,112 @@
 {
     "Souvenirs": [
         {
-            "id": "a9ecb848-0ca4-4725-9c80-4abeca8593d6",
+            "id": "8756942584",
             "name": "Anchor Key Hook",
             "barCode": "aaa-111",
             "color": "brown",
             "quantity": "10",
-            "productImageUrl":"public/styles/images/AnchorKeyHook.png",
+            "productImageUrl":"styles/images/AnchorKeyHook.png",
             "price": "35"
         }, 
         {
-            "id": "7b4a1f72-6877-4d3e-9fdd-12e9a2eb2220",
+            "id": "7558963235",
             "name": "Bottle Opener",
             "barCode": "aaa-222",
             "color": "multi",
             "quantity": "25",
-            "productImageUrl":"public/styles/images/BottleOpener.png",
+            "productImageUrl":"styles/images/BottleOpener.png",
             "price": "30"
         },
         {
-            "id": "ec2b3011-959f-4613-8484-6384e236981b",
+            "id": "1474147414",
             "name": "Cowboy Hat",
             "barCode": "aaa-333",
             "color": "multi",
             "quantity": "5",
-            "productImageUrl":"public/styles/images/CowboyHat.png",
+            "productImageUrl":"styles/images/CowboyHat.png",
             "price": "100"
         },
         {
-            "id": "ea7048b2-b9cf-46e0-9c0c-9a8547c76a75",
+            "id": "1231595125",
             "name": "Croatia Keychain",
             "barCode": "aaa-444",
             "color": "multi",
             "quantity": "45",
-            "productImageUrl":"public/styles/images/CroatiaKeychain.png",
+            "productImageUrl":"styles/images/CroatiaKeychain.png",
             "price": "20"
         },
         {
-            "id": "423f1d38-37e3-4156-90dd-6ec500af4bde",
+            "id": "7575865485",
             "name": "Croatia Magnet",
             "barCode": "aaa-555",
             "color": "multi",
             "quantity": "50",
-            "productImageUrl":"public/styles/images/CroatiaMagnet.png",
+            "productImageUrl":"styles/images/CroatiaMagnet.png",
             "price": "10"
         },
         {
-            "id": "e350dea3-eb54-45f5-80b0-b0c7de9250c3",
+            "id": "9898989898",
             "name": "Croatian Jersey",
             "barCode": "aaa-666",
             "color": "multi",
             "quantity": "10",
-            "productImageUrl":"public/styles/images/JerseyCroatia.png",
+            "productImageUrl":"styles/images/JerseyCroatia.png",
             "price": "150"
         },
         {
-            "id": "ec79c63b-1985-4fb4-9fd1-f5997158f26e",
+            "id": "6857482159",
             "name": "Lavander bag",
             "barCode": "aaa-777",
             "color": "purple",
             "quantity": "30",
-            "productImageUrl":"public/styles/images/Lavander.png",
+            "productImageUrl":"styles/images/Lavander.png",
             "price": "40"
         },
         {
-            "id": "45eaeb34-2eb9-46f0-8716-fa911949332e",
+            "id": "11475369855",
             "name": "Frame",
             "barCode": "aaa-888",
             "color": "gold",
             "quantity": "7",
-            "productImageUrl":"public/styles/images/OldSchoolFrame.png",
+            "productImageUrl":"styles/images/OldSchoolFrame.png",
             "price": "200"
         },
         {
-            "id": "1c97ef43-53c8-4943-86b1-86f5fc543b68",
+            "id": "6000589523",
             "name": "Olive Oil",
             "barCode": "aaa-999",
             "color": "Green",
             "quantity": "15",
-            "productImageUrl":"public/styles/images/OliveOil.png",
+            "productImageUrl":"styles/images/OliveOil.png",
             "price": "130"
         },
         {
-            "id": "5513588b-aa5c-4810-a738-a7ec0f4767b1",
+            "id": "8759635285",
             "name": "Travel Bag",
             "barCode": "aaa-bbb",
             "color": "black",
             "quantity": "30",
-            "productImageUrl":"public/styles/images/TravelBag.png",
+            "productImageUrl":"styles/images/TravelBag.png",
             "price": "120"
         },
         {
-            "id": "32851624-3702-4b87-a273-956f7c3e8fb2",
+            "id": "7748865124",
             "name": "Travel Book",
             "barCode": "aaa-ccc",
             "color": "green",
             "quantity": "24",
-            "productImageUrl":"public/styles/images/TravelBook.png",
+            "productImageUrl":"styles/images/TravelBook.png",
             "price": "60"
         },
         {
-            "id": "418420cf-523c-4718-a881-f07f3186ce01",
+            "id": "0123698574",
             "name": "Zagreb Mug",
             "barCode": "aaa-ddd",
             "color": "white",
             "quantity": "60",
-            "productImageUrl":"public/styles/images/ZagrebMug.png",
+            "productImageUrl":"styles/images/ZagrebMug.png",
             "price": "45"
-        }
-    ],
-    "Admini": [
-        {
-            "id": "8845716985",
-            "name": "Glavni Admin"
-        }, 
-        {
-            "id": "1548635795",
-            "name": "Zamjenski Admin"
         }
     ]
 }

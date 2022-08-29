@@ -3,7 +3,8 @@ import * as path from 'path'
 import { fileURLToPath } from 'url';
 import router from './routes/products.routes.js';
 import {initiDB} from './db.js'
-import { MongoClient } from 'mongodb'
+import bodyParser from 'body-parser';
+import multer from 'multer';
 
 // Initiating express
 var app = express();
@@ -24,7 +25,11 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // Set up public dir for style and other scripts
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname, '/public')));
+
+var upload = multer();
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(upload.array());
 
 
 // Set up routes for our services

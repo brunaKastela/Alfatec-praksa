@@ -4,42 +4,69 @@ import { MongoClient } from 'mongodb'
 //import { Double, MongoClient } from 'mongodb'
 
 // Logic to create db and seed all data if not present in db
-const url = "mongodb://localhost:27017/SouvenirShop";
-var db;
+const url = "mongodb://localhost:27017";
 
-const connectToDB = (async () => {
-
-    try {
-        MongoClient.connect(url, function(err, database) {
-            if (err) throw err;
-            db = database;
-            console.log("Connecting..."); // nema ispisa
-        });
-        console.log("Connected"); // db = undefined
-    } catch(err) {
-        console.log(err);
-    }
-})
+var _db;
 
 export const initiDB = (async () => {
 
-    await connectToDB();
-    console.log(db); // undefined
+    MongoClient.connect(url, function(err, mongoclient) {
+        _db = mongoclient.db('SouvenirShop');
 
-    db.collection("Souvenirs").count(function (err, count) {  // TypeError: Cannot read properties of undefined (reading 'collection')
-        if (!err && count === 0) {
-            const fileContent = readFileSync('seed.json', 'utf8')
-            if(fileContent) {
-                var seedData = JSON.parse(fileContent);
+        _db.collection("Souvenirs").count(function (err, count) {  // TypeError: Cannot read properties of undefined (reading 'collection')
+            if (!err && count === 0) {
+                const fileContent = readFileSync('seed.json', 'utf8')
+                if(fileContent) {
+                    var seedData = JSON.parse(fileContent);
+                }
+            
+                for(const element of seedData['Souvenirs']) {
+                    _db.collection("Souvenirs").insertOne(element, function(err, res) {
+                        if (err) throw err;
+                    });
+                }
             }
+        });
+    })
+})
+
+const dbInstance = () => _db;
+
+export default dbInstance;
+
+// const connectToDB = (async () => {
+
+//     // try {
+//     //     MongoClient.connect(url, function(err, database) {
+//     //         if (err) throw err;
+//     //         db = database.db('SouvenirShop');
+//     //         console.log("Connecting..."); // nema ispisa
+//     //     });
+//     //     console.log("Connected"); // db = undefined
+//     // } catch(err) {
+//     //     console.log(err);
+//     // }
+// })
+
+// export const initiDB = (async () => {
+
+    // await connectToDB();
+    // console.log(db); // undefined
+
+    // db.collection("Souvenirs").count(function (err, count) {  // TypeError: Cannot read properties of undefined (reading 'collection')
+    //     if (!err && count === 0) {
+    //         const fileContent = readFileSync('seed.json', 'utf8')
+    //         if(fileContent) {
+    //             var seedData = JSON.parse(fileContent);
+    //         }
         
-            for(const element of seedData['Souvenirs']) {
-                dbo.collection("Souvenirs").insertOne(element, function(err, res) {
-                    if (err) throw err;
-                });
-            }
-        }
-    });
+    //         for(const element of seedData['Souvenirs']) {
+    //             dbo.collection("Souvenirs").insertOne(element, function(err, res) {
+    //                 if (err) throw err;
+    //             });
+    //         }
+    //     }
+    // });
 
 
     // MongoClient.connect(url, function(err, db) {
@@ -64,18 +91,18 @@ export const initiDB = (async () => {
     //     });
     // });
 
-})
+//})
 
 // Example service to fetch all products
-export const getAllData = async () => {
+// export const getAllData = async () => {
 
-    db.collection("Souvenirs").find({}).toArray( function(err, result) {
-        if (err) {
-            console.log(err);
-            return reject(err);
-        }
-        return resolve(result);
-    })
+//     db.collection("Souvenirs").find({}).toArray( function(err, result) {
+//         if (err) {
+//             console.log(err);
+//             return reject(err);
+//         }
+//         return resolve(result);
+//     })
 
     // return new Promise(function(resolve, reject) {
     //     MongoClient.connect(url, function(err, db) {
@@ -92,17 +119,17 @@ export const getAllData = async () => {
     //         })
     //     })
     // })
-}
+//}
 
-export const getProduct = async (id) => {
+// export const getProduct = async (id) => {
 
-    db.collection("Souvenirs").find({"id": id}).toArray( function(err, result) {
-            if (err) {
-                console.log(err);
-                return reject(err);
-            }
-            return resolve(result);
-        })
+//     db.collection("Souvenirs").find({"id": id}).toArray( function(err, result) {
+//             if (err) {
+//                 console.log(err);
+//                 return reject(err);
+//             }
+//             return resolve(result);
+//         })
         
     // return new Promise(function(resolve, reject) {
     //     MongoClient.connect(url, function(err, db) {
@@ -118,7 +145,7 @@ export const getProduct = async (id) => {
     //         })
     //     })
     // })
-}
+//}
 
 // export const editProductInDB = async(id, newvalues) => {    //newValues like {$set: {address: "Canyon 123"} }
 
