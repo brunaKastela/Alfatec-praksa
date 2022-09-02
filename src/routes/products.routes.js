@@ -5,15 +5,9 @@ import {validateData} from '../middleware/error-handling.js'
 
 const router = Router();
 
-router.get("/", async function(req, res, next) {
+router.get("/", fetchProducts);
 
-   await fetchProducts(req, res);
-});
-
-router.post("/", async function(req, res, next) {
-
-   deleteProduct(req.body.id);
-});
+router.post("/", deleteProduct);
 
 router.get("/Edit/:id", async function(req, res, next) {
 

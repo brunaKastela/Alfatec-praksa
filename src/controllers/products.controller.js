@@ -46,6 +46,7 @@ export const addProduct = async (req, res)  => {
   console.log(set);
 
   await addProductInDB(set);
+  res.redirect('/');
 }
 
 export const editProduct = async (req, res)  => {
@@ -63,6 +64,7 @@ export const editProduct = async (req, res)  => {
   console.log(set);
 
   await editProductInDB(id, set);
+  res.redirect('/');
 }
 
 export const deleteProduct = async (id) => {

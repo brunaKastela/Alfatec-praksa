@@ -29,7 +29,7 @@ export const getProduct = async (id) => {
             return reject(err);
          }
 
-         return resolve(result)
+         resolve(result);
      })
    })
 }
@@ -40,13 +40,14 @@ export const editProductInDB = async(id, newvalues) => {
 
    return new Promise(function(resolve, reject) {
 
-      _db.collection("Souvenirs").updateOne({"id": id}, {$set: newvalues}, function(err, res) {
+      _db.collection("Souvenirs").updateOne({"id": id}, {$set: newvalues}, function(err, result) {
          if (err) {
             console.log(err);
             throw err;
          }
 
          console.log("Document updated");
+         resolve(result);
      })
    })
 }
@@ -81,6 +82,7 @@ export const addProductInDB = async(values) => {
          }
 
          console.log("Document inserted");
+         resolve(result);
      })
    })
 }
