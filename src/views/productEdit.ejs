@@ -1,5 +1,4 @@
 <%- include('layout/header.ejs') %>	
-<%- include('partials/addProduct.ejs') %>	
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,9 +8,29 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" type="text/css" href="/styles/main.css" />
    <title>Product Edit</title>
+   <script>
+      const highlightErrors = () => {
+         console.log("In");
+         const allElements = document.getElementsByClassName("input-area");
+         for (const element of allElements) {
+            console.log(element)
+   
+            text = element.getAttribute('id');
+            console.log(text);
+            var errParam = document.getElementById('errParam').innerHTML;
+            if(errParam.includes(text)) {
+               element.classList.add("error-occured");
+            } else {
+               element.classList.remove("error-occured");
+            }
+         }
+      }
+   
+   </script>
 </head>
-   <body>
-
+   <body onload="highlightErrors()">
+      <h1>Edit product</h1>
+      <%- include('partials/addProduct.ejs') %>	
    </body>
 </html>
 

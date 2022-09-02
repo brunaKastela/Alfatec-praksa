@@ -9,3 +9,7 @@ export const deleteProduct = async (id) => {
      return;
    }
  }
+
+export const calculateID = () => {
+  return (Math.floor(Math.random() * 9000000000) + 1000000000).toString();
+}

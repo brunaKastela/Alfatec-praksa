@@ -1,5 +1,5 @@
 import {getAllData, getProduct, editProductInDB, deleteProductInDB, addProductInDB} from '../repository/db.repository.js'
-import * as helper from '../helpers/discounts-helper.js' 
+import * as helper from '../helpers/helper.js' 
 
 
 // Service for getting view with all products displayed
@@ -20,7 +20,8 @@ export const fetchProduct = async (req, res)  => {
         let id = req.params.id
 
         const product = (await getProduct(id))[0];
-        res.render('productEdit', { product });
+        return product;
+        //res.render('productEdit', { product });
     }
     catch(error) {
       console.log(error)
@@ -30,8 +31,11 @@ export const fetchProduct = async (req, res)  => {
 
 export const addProduct = async (req, res)  => {
 
+  let id = helper.calculateID();
+  console.log(id);
+
   var set = {
-    id: req.body.id,
+    id: id,
     name: req.body.name,
     barCode: req.body.barCode,
     color: req.body.color,
@@ -48,7 +52,7 @@ export const editProduct = async (req, res)  => {
 
   let id = req.params.id;
   var set = {
-    id: req.body.id,
+    id: id,
     name: req.body.name,
     barCode: req.body.barCode,
     color: req.body.color,

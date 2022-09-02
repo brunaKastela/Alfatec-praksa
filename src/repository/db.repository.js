@@ -48,7 +48,6 @@ export const editProductInDB = async(id, newvalues) => {
 
          console.log("Document updated");
      })
-     console.log("Document updated2");
    })
 }
 

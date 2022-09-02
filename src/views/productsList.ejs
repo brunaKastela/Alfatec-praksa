@@ -7,32 +7,83 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="styles/main.css" />
-	<script type = "text/javascript">
+	<!-- <script type="text/javascript" src="C:\Praksa\praksa_zadatci-master\src\helpers\helper.js"></script> -->
+	<script>
+ 	const filterPage = async() => {
+
+		var filterValue = document.getElementById('filter').value;
+		var filterBy = document.getElementById('filterBy').value;
+		var filterMatches = document.getElementById('filterMatches');
+		filterMatches.classList.remove("hidden");
+
+		console.log(filterValue, filterBy);
+
+		const allElements = document.getElementsByClassName("product-container");
+		for (const element of allElements) {
+			// let text = element.querySelector(filterBy).innerHTML;
+
+			text = element.getElementsByClassName(filterBy)[0].innerHTML;
+			if(filterBy != 'price' && filterBy != 'quantity' && !(text.toString().toLowerCase().includes(filterValue.toString().toLowerCase()))) {
+				element.classList.add("hidden");
+			} else if ((filterBy == 'price' || filterBy == 'quantity') && filterValue != text) {
+				element.classList.add("hidden");
+			} else {
+				element.classList.remove("hidden");
+			}
+			
+			if(document.getElementsByClassName("product-container").length == document.getElementsByClassName("product-container hidden").length) {
+				filterMatches.classList.remove("hidden");
+			} else {
+				filterMatches.classList.add("hidden");
+			}
+		}
+ 	}
 	</script>
 	<title>Souveniers accounting</title>
+	<link rel="icon" href="styles/images/icon/myIcon.ico"  type=”image/x-icon”>
 </head>
 
 <body>
 	<div class="body-container">
-		<div class="add-item-container">
-			<button onclick="window.location.href='AddProduct'">Add souvenier</button>
+		<div class="options-container">
+			<div class="filter-container">
+				<label for="filerBy">Filter by:</label>
+				<select name="filterBy" id="filterBy" value="">
+					<option value="id">ID</option>
+					<option value="name">Name</option>
+					<option value="barCode">Barcode</option>
+					<option value="color">Color</option>
+					<option value="quantity">Quantity</option>
+					<option value="price">Price</option>
+				</select>
+				<input type="text" name="filter" id="filter" placeholder="Type here..." value="">
+				<button id="filterButton" class="button" onclick="filterPage()">Filter</button>
+			</div>
+			<div class="add-item-container">
+				<button class="button" onclick="window.location.href='AddProduct'">Add souvenier</button>
+			</div>
 		</div>
 		<div class="main-container">
+			<div class = "hidden error filter-matches" id="filterMatches">No matches...</div>
 			<% if (tableData) { %>
 				<% tableData.forEach(function(product){ %>
 					<div class="product-container">
-						<img class="product-view-image" src=<%=product.productImageUrl%>></img>
+						<div class="image-container">
+							<img class="product-view-image" src=<%=product.productImageUrl%>></img>
+						</div>
 						<div>
-							<div>Name:<%= product.name %></div>
-							<div>ID:<%= product.id %></div>
-							<div>BarCode:<%= product.barCode %></div>
-							<div class="'buttons">
-								<a href='Edit/<%= product.id %>'>Edit</a>
-								<!-- <button name="delete" value='Delete' onClick="helper.deleteProduct('<%=product.id%>')">Delete</button> -->
-								<form action="" class="table-form" method="delete">
-									<!-- <input type="submit" name="delete" value='Delete' onclick="return confirm('Are you sure you want to delete item?')"/> -->
-									<a href="RemoveProduct/<%= product.id %>" onclick="return confirm('Are you sure you want to delete item?')">Delete</a>
-									<!-- <input type="submit" name="delete" value='Delete' onclick="return confirm('Are you sure you want to delete item?')"/> -->
+							<div class="product-info">
+								<div>Name: <span class="name"><b><%= product.name %></b></span></div>
+								<div class='hidden'>ID: <span class="id"><b><%= product.id %></b></span></div>
+								<div class="hidden">Barcode: <span class="barCode hidden"><b><%= product.barCode %></b></span></div>
+								<div>Quantity: <span class="quantity"><b><%= product.quantity %></b></span></div>
+								<div>Price: <span class="price"><b><%= product.price%> kn</b></span></div>
+								<div class="hidden">Color: <span class="color "><b><%= product.color%></b></span></div>
+							</div>
+							<div class="buttons-container">
+								<a class="button" href='Edit/<%= product.id %>'>Edit</a>
+								<form action="" class="delete-form" method="delete">
+									<a class="button" href="RemoveProduct/<%= product.id %>" onclick="return confirm('Are you sure you want to delete item?')">Delete</a>
 								</form>
 							</div>
 						</div>

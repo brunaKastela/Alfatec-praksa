@@ -1,0 +1,9 @@
+<% if(typeof errMsg != 'undefined' && errMsg != []) { %> 
+   <div class="error">
+      <div>Error!</div>
+      <% for (msg of errMsg) { %> 
+      <div><%= msg%> </div>
+      <% } %> 
+   </div>
+   <div id="errParam" class="hidden"><%=errParam %> </div>
+<% } %>

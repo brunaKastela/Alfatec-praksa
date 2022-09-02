@@ -1,36 +1,98 @@
-<div>
+<!-- <head>
+   <script>
+      const reset = () => {
+         document.getElementById('name').innerHTML = "";
+         document.getElementById('barCode').innerHTML = "";
+         document.getElementById('color').innerHTML = "";
+         document.getElementById('quantity').innerHTML = "";
+         document.getElementById('productImageUrl').innerHTML = "";
+         document.getElementById('color').innerHTML = "";
+         document.getElementById('price').innerHTML = "";
+      }
+   </script>
+</head> -->
+
+<div class="form-container">
    <form action="" method="post">
-      <fieldset>
+      <div class="form-input">
          <div class="form-group">
-            <label for="id">ID:</label>
-            <input type="text" name="id" id="id" minlength="10" maxlength="10" required>
+            <div class="label-column">
+               <label for="name">Name</label>
+            </div>
+            <div class="input-column">
+               <input class="input-area" type="text" name="name" id="name" required
+               <% if(typeof product != 'undefined') {%> 
+               value=<%= product.name %><%} %>>
+            </div>
          </div>
          <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="text" name="name" id="name" required>
+            <div class="label-column">
+               <label for="barCode">Barcode</label>
+            </div>
+            <div class="input-column">
+               <input class="input-area" type="text" name="barCode" id="barCode" required pattern="[a-zA-Z0-9]{3}-[a-zA-Z0-9]{3}"
+               <% if(typeof product != 'undefined') {%> 
+               value=<%= product.barCode %><%} %>>
+            </div>
          </div>
          <div class="form-group">
-            <label for="barCode">Barcode:</label>
-            <input type="text" name="barCode" id="barCode" required>
+            <div class="label-column">
+               <label for="color">Color</label>
+            </div>
+            <div class="input-column">
+               <input class="input-area" type="text" name="color" id="color" required
+               <% if(typeof product != 'undefined') {%> 
+               value=<%= product.color %><%} %>>
+            </div>
          </div>
          <div class="form-group">
-            <label for="color">Color:</label>
-            <input type="text" name="color" id="color">
+            <div class="label-column">
+               <label for="quantity">Quantity</label>
+            </div>
+            <div class="input-column">
+               <input class="input-area" type="text" name="quantity" id="quantity" required pattern="[0-9]+"
+               <% if(typeof product != 'undefined') {%> 
+               value=<%= product.quantity %><%} %>>
+            </div>
          </div>
          <div class="form-group">
-            <label for="quantity">Quantity:</label>
-            <input type="text" name="quantity" id="quantity">
+            <div class="label-column">
+               <label for="productImageUrl">Image URL</label>
+            </div>
+            <div class="input-column">
+               <input class="input-area" type="text" name="productImageUrl" id="productImageUrl" required
+               <% if(typeof product != 'undefined') {%> 
+               value=<%= product.productImageUrl %><%} %>>
+            </div>
          </div>
          <div class="form-group">
-            <label for="productImageUrl">Image URL:</label>
-            <input type="text" name="productImageUrl" id="productImageUrl">
+            <div class="label-column">
+               <label for="price">Price</label>
+            </div>
+            <div class="input-column">
+               <input class="input-area" type="text" name="price" id="price" required
+               <% if(typeof product != 'undefined') {%> 
+               value=<%= product.price %><%} %>>
+            </div>
          </div>
-         <div class="form-group">
-            <label for="price">Price:</label>
-            <input type="text" name="price" id="price">
-         </div>
-         <input class="btn" type="submit">
-         <input class="btn" type="reset">
-      </fieldset>
+      </div>
+      <div>
+         <input class="button button-larger" type="submit"
+         <% if(typeof product != 'undefined') {%> 
+         value='Edit'
+         <%} else { %>
+         value='Save'
+         <%} %>>
+         <input class="button button-larger" type="reset">
+      </div>
    </form>
+   <% if(typeof product != 'undefined') {%> 
+   <div class="product-image-container">
+       <img class="product-image" src=/<%=product.productImageUrl%>></img>
+   </div>
+   <% console.log(typeof product) %> 
+   <% } else { %>
+      <p></p>
+   <% } %> 
+   <%- include('error.ejs') %>	
 </div>
