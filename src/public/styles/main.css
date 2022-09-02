@@ -62,8 +62,8 @@ h1 {
 }
 
 .error {
-   color: #ff926a;
-   border: 1px solid #ff926a;
+   color: red;
+   border: 1px solid red;
    border-radius: 6px;
    padding: 5px;
    margin-bottom: 20px;
@@ -82,14 +82,6 @@ h1 {
    align-items: center;
 }
 
-.main-container {
-   width: 70vw;
-   display: grid;
-   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-   justify-content: center;
-   justify-items: center;
-}
-
 .options-container {
    width: 70vw;
    display: grid;
@@ -101,6 +93,18 @@ h1 {
    grid-template-columns: 1fr 1fr 4fr 1fr 1fr;
    column-gap: 3px;
 }
+
+.main-container {
+   width: 70vw;
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+   justify-content: center;
+   justify-items: center;
+}
+
+
+
+
 
 .add-item-container {
    display: grid;
@@ -117,6 +121,10 @@ h1 {
    align-items: center;
    width: 180px;
    background-color: white;
+}
+
+.product-container:hover {
+   border: 2px solid darkgray;
 }
 
 .image-container {
@@ -369,5 +377,5 @@ input[type=text], select, textarea {
 }
 
 .error-occured {
-   border: 2px solid #ff926a !important;
+   border: 2px solid red !important;
 }

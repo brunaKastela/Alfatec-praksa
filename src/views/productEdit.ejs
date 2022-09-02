@@ -10,13 +10,10 @@
    <title>Product Edit</title>
    <script>
       const highlightErrors = () => {
-         console.log("In");
          const allElements = document.getElementsByClassName("input-area");
-         for (const element of allElements) {
-            console.log(element)
-   
+         
+         for (const element of allElements) {   
             text = element.getAttribute('id');
-            console.log(text);
             var errParam = document.getElementById('errParam').innerHTML;
             if(errParam.includes(text)) {
                element.classList.add("error-occured");

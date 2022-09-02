@@ -17,8 +17,6 @@
 		var filterMatches = document.getElementById('filterMatches');
 		filterMatches.classList.remove("hidden");
 
-		console.log(filterValue, filterBy);
-
 		const allElements = document.getElementsByClassName("product-container");
 		for (const element of allElements) {
 			// let text = element.querySelector(filterBy).innerHTML;
@@ -39,6 +37,10 @@
 			}
 		}
  	}
+
+	function displayPages () {
+		
+	}
 	</script>
 </head>
 
@@ -62,7 +64,8 @@
 				<button class="button" onclick="window.location.href='AddProduct'">Add souvenier</button>
 			</div>
 		</div>
-		<div class="main-container">
+		<div class="pagination" id="pagination"></div>
+		<div class="main-container list">
 			<div class = "hidden error filter-matches" id="filterMatches">No matches...</div>
 			<% if (tableData) { %>
 				<% tableData.forEach(function(product){ %>

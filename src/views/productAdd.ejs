@@ -1,6 +1,5 @@
 <%- include('layout/header.ejs') %>	
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,11 +11,9 @@
    <script>
       const highlightErrors = () => {
          const allElements = document.getElementsByClassName("input-area");
+         
          for (const element of allElements) {
-            console.log(element)
-   
             text = element.getAttribute('id');
-            console.log(text);
             var errParam = document.getElementById('errParam').innerHTML;
             if(errParam.includes(text)) {
                element.classList.add("error-occured");
@@ -25,15 +22,6 @@
             }
          }
       }
-      // const reset = () => {
-      //    document.getElementById('name').innerHTML = "";
-      //    document.getElementById('barCode').innerHTML = "";
-      //    document.getElementById('color').innerHTML = "";
-      //    document.getElementById('quantity').innerHTML = "";
-      //    document.getElementById('productImageUrl').innerHTML = "";
-      //    document.getElementById('color').innerHTML = "";
-      //    document.getElementById('price').innerHTML = "";
-      // }
    </script>
 </head>
 <body  onload="highlightErrors()">
@@ -42,4 +30,4 @@
 </body>
 </html>
 
-<%- include('layout/footer.ejs') %>	
+<%- include('layout/footer.ejs') %>
