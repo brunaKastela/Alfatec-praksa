@@ -1,9 +1,12 @@
 import dbInstance from "../db.js";
 
-export const getAllData = async () => {
+export const getAllData = async (req) => {
 
    var _db = dbInstance();
+   // let filterValue = req.body.filterValue;
+   // let filterBy = String(req.body.filterBy);
 
+   // console.log("In getAllData");
    return new Promise(function(resolve, reject) {
 
       _db.collection("Souvenirs").find().toArray( function(err, result) {
@@ -11,8 +14,8 @@ export const getAllData = async () => {
          console.log(err);
          return reject(err)
        }
-
-       return resolve(result)
+      // console.log("Result: " + result);
+      resolve(result)
      })
    })
 }

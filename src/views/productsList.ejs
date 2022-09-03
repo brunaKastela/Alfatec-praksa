@@ -37,37 +37,55 @@
 			}
 		}
  	}
-
-	function displayPages () {
-		
-	}
 	</script>
 </head>
 
 <body>
 	<div class="body-container">
 		<div class="options-container">
+			<form action="" method="post">
 			<div class="filter-container">
-				<label for="filerBy">Filter by:</label>
-				<select name="filterBy" id="filterBy" value="">
-					<option value="id">ID</option>
-					<option value="name">Name</option>
-					<option value="barCode">Barcode</option>
-					<option value="color">Color</option>
-					<option value="quantity">Quantity</option>
-					<option value="price">Price</option>
+				<label for="filterBy">Filter by:</label>
+				<select id="filterBy" name="filterBy" id="filterBy"
+					<% if(filterBy) {%> 
+						value="<%=filterBy %>"
+					<% } %>>
+					<option <%if(filterBy == 'id') {%>selected="selected"<%} %> value="id">ID</option>
+					<option <%if(filterBy == 'name') {%>selected="selected"<%} %> value="name">Name</option>
+					<option <%if(filterBy == 'barCode') {%>selected="selected"<%} %> value="barCode">Barcode</option>
+					<option <%if(filterBy == 'color') {%>selected="selected"<%} %> value="color">Color</option>
+					<option <%if(filterBy == 'quantity') {%>selected="selected"<%} %> value="quantity">Quantity</option>
+					<option <%if(filterBy == 'price') {%>selected="selected"<%} %> value="price">Price</option>
 				</select>
-				<input type="text" name="filter" id="filter" placeholder="Type here..." value="">
-				<button id="filterButton" class="button" onclick="filterPage()">Filter</button>
-			</div>
+				<input type="text" id="filterValue" name="filterValue" 
+				<% if(filterValue) { %> 
+					value="<%=filterValue %>">
+				<% } else { %>
+					value=""> 
+				<% } %>  
+				<input class="button" type="submit" value="Filter">
+				<!-- <input type="text" name="filter" id="filter" placeholder="Type here..." value="">
+				<button id="filterButton" class="button" onclick="filterPage()">Filter</button> -->
+			</div></form>
 			<div class="add-item-container">
 				<button class="button" onclick="window.location.href='AddProduct'">Add souvenier</button>
 			</div>
 		</div>
-		<div class="pagination" id="pagination"></div>
+		<div class="pagination" id="pagination">
+			<% if (pagesCount > 1) { %> 
+				<a class="page" <%if(page != 1) {%> 
+											href="?page=<%=page - 1%>&filterValue=<%=filterValue%>&filterBy=<%=filterBy%>"
+											<% } %> >&laquo;</a>
+				<% for (let i = 1; i <= pagesCount; i++) {%> 
+					<a class="page <%if(page==i){%>active<%} %>" href="?page=<%=i%>&filterValue=<%=filterValue%>&filterBy=<%=filterBy %> "><%=i %></a>
+				<% } %> 
+				<a class="page" <%if(page != pagesCount) {%>
+											href="?page=<%=page + 1%>&filterValue=<%=filterValue%>&filterBy=<%=filterBy%>"
+											<% } %> >&raquo;</a>
+			<% } %> 
+		</div>
 		<div class="main-container list">
-			<div class = "hidden error filter-matches" id="filterMatches">No matches...</div>
-			<% if (tableData) { %>
+			<% if (tableData.length !== 0) { %>
 				<% tableData.forEach(function(product){ %>
 					<div class="product-container">
 						<div class="image-container">
@@ -91,7 +109,9 @@
 						</div>
 					</div>
 				<% }) %>
-			<% } %>
+			<% } else {%>
+					<div class = "error filter-matches" id="filterMatches">No matches...</div>
+			<% } %> 
 		</div>
 	</div>
 

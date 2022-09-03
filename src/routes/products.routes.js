@@ -7,15 +7,24 @@ const router = Router();
 
 router.get("/", fetchProducts);
 
-router.post("/", deleteProduct);
+router.post("/", async function(req, res, next) {
+
+   console.log(req.body.filterBy);
+   console.log(req.body.filterValue);
+
+   await fetchProducts(req, res);
+});
+
+// router.get("/Edit/:id", fetchProduct);
 
 router.get("/Edit/:id", async function(req, res, next) {
 
    let product = await fetchProduct(req, res);
-   let errMsg = "";
-   let errParam = [];
-   res.render('productEdit', {product, errMsg, errParam});
+   let errMsg = undefined;
+   let errParam = undefined;
+   res.render('productAdd', {errMsg, errParam, product});
 });
+
 
 router.post("/Edit/:id", async function(req, res, next) {
 
@@ -40,35 +49,14 @@ router.post("/Edit/:id", async function(req, res, next) {
 
 router.get("/AddProduct", async function(req, res, next) {
 
-   let err = "";
-   let product = {
-      id: req.body.id,
-      name:"",
-      barCode: "",
-      color: "",
-      quantity: "",
-      productImageUrl: "",
-      price: ""
-   }
-   res.render('productAdd', {err});
+   let errMsg = undefined;
+   let errParam = undefined;
+   res.render('productAdd', {errMsg, errParam});
 });
 
 router.post("/AddProduct", async function(req, res, next) {
 
    let errMsg, errParam;
-   // let product = {
-   //    id: req.body.id,
-   //    name: req.body.name,
-   //    barCode: req.body.barCode,
-   //    color: req.body.color,
-   //    quantity: req.body.quantity,
-   //    productImageUrl: req.body.productImageUrl,
-   //    price: req.body.price
-   // }
-
-   // req.body.name = undefined;
-   // req.body.barCode = undefined;
-   // req.body.color = undefined;
 
    try {
       let err = validateData(req, res);
@@ -85,12 +73,6 @@ router.post("/AddProduct", async function(req, res, next) {
       res.render('productAdd', {errMsg, errParam});
    }
 })
-
-// router.delete("/RemoveProduct", async function(req, res, next) {
-
-//    console.log("U ruteru")
-//    deleteProduct(req.body.id);
-// });
 
 router.get("/RemoveProduct/:id", async function(req, res, next) {
 
