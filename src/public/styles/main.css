@@ -164,6 +164,42 @@ a.active {
    justify-items: left;
 }
 
+.description-container {
+   position: absolute;
+   box-shadow: 0 0 0 max(500vh, 100vw) rgba(0, 0, 0, .4);
+   border-radius: 10px;
+   border: 2px solid darkgrey;
+   width: 50vw;
+   background-color: white;
+   display: grid;
+   grid-template-rows: auto auto;
+}
+
+.info-container {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(300px, auto));
+}
+
+.product-information {
+   padding-left: 80px;
+   padding-top: 50px;
+   font-size: 17px;
+}
+
+.info-row {
+   padding: 5px;
+}
+
+.description-image {
+   object-fit: contain;
+   width: 300px;
+   height: 300px;
+   padding: 10px;
+   display: grid;
+   justify-self: center;
+   margin-bottom: 20px;
+}
+
 .delete-form {
    max-width: fit-content;
    margin: 0px;
@@ -270,6 +306,13 @@ input[type=text], select, textarea {
   clear: both;
 }
 
+.exit-icon {
+   object-fit: contain;
+   width: 35px;
+   height: 35px;
+   justify-self: right;
+}
+
 .locations {
    display: grid;
    grid-template-columns: 1fr 1fr 1fr;
@@ -300,6 +343,105 @@ input[type=text], select, textarea {
 .product-info {
    font-size: 13px;
    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 1150px) {
+   .info-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+   }
+   
+   .product-information {
+      padding-left: 50px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      font-size: 15px;
+   }
+
+   .description-container {
+      position: absolute;
+      background-color: white;
+      display: grid;
+      min-height: fit-content;
+      
+      grid-template-rows: auto auto;
+      margin-top: 0%;
+      margin-bottom: 50px;
+   }
+
+   .info-row {
+      padding: 5px;
+   }
+   
+   .description-image {
+      object-fit: contain;
+      width: 250px;
+      height: 250px;
+      padding: 5px;
+      display: grid;
+      justify-self: center;
+      margin-bottom: 10px;
+   }
+}
+
+@media screen and (max-width: 950px) {
+   .form-container {
+      display: grid;
+      grid-template-columns: auto;
+      gap: 0%;
+   }
+
+   h1 {
+      padding-left: 0%;
+      text-align: center;
+   }
+
+   .options-container {
+      width: 80vw;
+      display: grid;
+      grid-template-columns: auto;
+   }
+
+   .filter-container {
+      display: grid;
+      grid-template-columns: auto;
+      row-gap: 3px;
+   }
+
+   .add-item-container {
+      display: grid;
+      justify-content: right;
+   }
+}
+
+@media screen and (max-width: 650px) {
+   .city-tag {
+      font-size: 16px;
+   }
+
+   .address {
+      font-size: 12px;
+      margin-bottom: 10px;
+   }
+
+   .locations {
+      width: 100%;
+      margin-left: 0%;
+   }
+   
+   footer {
+      grid-template-columns: 1fr;
+   }
+
+   .small-header {
+      margin-bottom: 7px;
+      margin-top: 7px;
+   }
+
+   .description-container {
+      width: 80vw;
+      background-color: white;
+   }
 }
 
 @media screen and (max-width: 615px) {
@@ -336,56 +478,36 @@ input[type=text], select, textarea {
      width: 100%;
      margin-top: 0;
    }
-}
 
-@media screen and (max-width: 650px) {
-   .city-tag {
-      font-size: 16px;
-   }
-   .address {
-      font-size: 12px;
+   .description-image {
+      object-fit: contain;
+      width: 200px;
+      height: 200px;
+      padding: 3px;
+      display: grid;
+      justify-self: center;
       margin-bottom: 10px;
    }
-   .locations {
-      width: 100%;
-      margin-left: 0%;
-   }
-   footer {
-      grid-template-columns: 1fr;
-   }
-   .small-header {
-      margin-bottom: 7px;
-      margin-top: 7px;
-   }
 }
 
-@media screen and (max-width: 800px) {
-   .form-container {
+@media screen and (max-width: 400px) {
+   .description-image {
+      object-fit: contain;
+      width: 160px;
+      height: 160px;
+      padding: 3px;
       display: grid;
-      grid-template-columns: auto;
-      gap: 0%;
+      justify-self: center;
+      margin-bottom: 10px;
    }
 
-   h1 {
-      padding-left: 0%;
-      text-align: center;
+   .product-information {
+      padding-left: 30px;
    }
 
-   .options-container {
-      width: 80vw;
+   .info-container {
       display: grid;
-      grid-template-columns: auto;
-   }
-
-   .filter-container {
-      display: grid;
-      grid-template-columns: auto;
-      row-gap: 3px;
-   }
-
-   .add-item-container {
-      display: grid;
-      justify-content: right;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
    }
 }
 

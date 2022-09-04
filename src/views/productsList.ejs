@@ -8,35 +8,16 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="styles/main.css" />
 	<title>Souveniers accounting</title>
-	<!-- <script type="text/javascript" src="C:\Praksa\praksa_zadatci-master\src\helpers\helper.js"></script> -->
 	<script>
- 	const filterPage = async() => {
-
-		var filterValue = document.getElementById('filter').value;
-		var filterBy = document.getElementById('filterBy').value;
-		var filterMatches = document.getElementById('filterMatches');
-		filterMatches.classList.remove("hidden");
-
-		const allElements = document.getElementsByClassName("product-container");
-		for (const element of allElements) {
-			// let text = element.querySelector(filterBy).innerHTML;
-
-			text = element.getElementsByClassName(filterBy)[0].innerHTML;
-			if(filterBy != 'price' && filterBy != 'quantity' && !(text.toString().toLowerCase().includes(filterValue.toString().toLowerCase()))) {
-				element.classList.add("hidden");
-			} else if ((filterBy == 'price' || filterBy == 'quantity') && filterValue != text) {
-				element.classList.add("hidden");
-			} else {
-				element.classList.remove("hidden");
-			}
-			
-			if(document.getElementsByClassName("product-container").length == document.getElementsByClassName("product-container hidden").length) {
-				filterMatches.classList.remove("hidden");
-			} else {
-				filterMatches.classList.add("hidden");
-			}
-		}
+ 	function showDescription(id) {
+		let element = document.getElementById(id);
+		element.classList.remove('hidden');
  	}
+
+	function exitDescription(id) {
+		let element = document.getElementById(id);
+		element.classList.add('hidden');
+	}
 	</script>
 </head>
 
@@ -64,8 +45,6 @@
 					value=""> 
 				<% } %>  
 				<input class="button" type="submit" value="Filter">
-				<!-- <input type="text" name="filter" id="filter" placeholder="Type here..." value="">
-				<button id="filterButton" class="button" onclick="filterPage()">Filter</button> -->
 			</div></form>
 			<div class="add-item-container">
 				<button class="button" onclick="window.location.href='AddProduct'">Add souvenier</button>
@@ -84,12 +63,14 @@
 											<% } %> >&raquo;</a>
 			<% } %> 
 		</div>
+		
 		<div class="main-container list">
 			<% if (tableData.length !== 0) { %>
 				<% tableData.forEach(function(product){ %>
 					<div class="product-container">
-						<div class="image-container">
-							<img class="product-view-image" src=<%=product.productImageUrl%>></img>
+						<div class="image-container"> 
+							<% var id = product.id %>
+							<img class="product-view-image" src=<%=product.productImageUrl%> onclick="showDescription('<%=id %>')"></img>
 						</div>
 						<div>
 							<div class="product-info">
@@ -106,6 +87,22 @@
 									<a class="button" href="RemoveProduct/<%= product.id %>" onclick="return confirm('Are you sure you want to delete item?')">Delete</a>
 								</form>
 							</div>
+						</div>
+					</div>
+					<% var elementId = product.id %>
+					<% var elementName = product.name %> 
+					<div class="hidden description-container" id="<%=elementId%>"  name="<%=elementName%>">
+						<img class="exit-icon" src="styles/images/cross.png" onclick="exitDescription('<%=elementId%>')"></img>
+						<div class="info-container">
+							<div class="product-information">
+								<div class="info-row">Name: <span class="name"><b><%= product.name %></b></span></div>
+								<div class="info-row">ID: <span class="id"><b><%= product.id %></b></span></div>
+								<div class="info-row">Barcode: <span class="barCode"><b><%= product.barCode %></b></span></div>
+								<div class="info-row">Quantity: <span class="quantity"><b><%= product.quantity %></b></span></div>
+								<div class="info-row">Price: <span class="price"><b><%= product.price%> kn</b></span></div>
+								<div class="info-row">Color: <span class="color "><b><%= product.color%></b></span></div>
+							</div>
+							<img class="description-image" src=<%=product.productImageUrl%>></img>
 						</div>
 					</div>
 				<% }) %>

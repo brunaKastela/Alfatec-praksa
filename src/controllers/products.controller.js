@@ -21,8 +21,6 @@ export const fetchProducts = async (req, res)  => {
       page = parseInt(req.query.page);
     }
 
-    // console.log(req.query.filterBy);
-    // console.log(req.query.filterValue);
     let tableData = [];
     let filterBy = undefined;
     let filterValue = undefined;
@@ -36,16 +34,12 @@ export const fetchProducts = async (req, res)  => {
       filterBy = req.body.filterBy;
       filterValue = req.body.filterValue;
     }
-    console.log(filterBy + " " + filterValue)
+
     if (filterValue) {
 
       fullTableData.forEach( function(item) {
         for(const property in item) {
           if(property == filterBy) {
-            // console.log( item[property].toString().toLowerCase());
-            // console.log(filterBy != 'price');
-            // console.log(filterBy != 'quantity');
-            // console.log(item[property].toString().toLowerCase().includes(filterValue.toString().toLowerCase()));
             if(filterBy != 'price' && filterBy != 'quantity' && item[property].toString().toLowerCase().includes(filterValue.toString().toLowerCase())) {
               tableData.push(item);
               console.log("Pushed")
@@ -71,30 +65,11 @@ export const fetchProducts = async (req, res)  => {
       pagesCount = 1;
     }
 
-    //console.log(req.body.filterBy);
-    //console.log(req.body.filterValue);
-    //console.log(tableData);
     res.render('productsList', { tableData, 
                                 pagesCount, 
                                 page, 
                                 filterBy,
                                 filterValue});
-
-    // const results = {}
-
-    // if(endIndex < fullTableData.length) {
-    //   results.next = {
-    //     page: page + 1,
-    //     limit: limit
-    //   }
-    // }
-
-    // if(startIndex > 0) {
-    //   results.previous = {
-    //     page: page - 1,
-    //     limit: limit
-    //   }
-    // }
 }
 
 export const fetchProduct = async (req, res)  => {
@@ -103,9 +78,6 @@ export const fetchProduct = async (req, res)  => {
 
         const product = (await getProduct(id))[0];
         return product;
-        let errMsg = [];
-        let errParam = [];
-        // res.render('productEdit', { product, errMsg, errParam });
     }
     catch(error) {;
       console.log(error)
@@ -116,7 +88,6 @@ export const fetchProduct = async (req, res)  => {
 export const addProduct = async (req, res)  => {
 
   let id = helper.calculateID();
-  //console.log(id);
 
   var set = {
     id: id,
@@ -127,7 +98,6 @@ export const addProduct = async (req, res)  => {
     productImageUrl: req.body.productImageUrl,
     price: req.body.price
   }
-  //console.log(set);
 
   await addProductInDB(set);
   res.redirect('/');
@@ -145,7 +115,6 @@ export const editProduct = async (req, res)  => {
     productImageUrl: req.body.productImageUrl,
     price: req.body.price
   }
-  //console.log(set);
 
   await editProductInDB(id, set);
   res.redirect('/');
@@ -156,23 +125,3 @@ export const deleteProduct = async (id) => {
   console.log("Deleting product");
   await deleteProductInDB(id);
 }
-
-// export const editOrAddProduct = async (req, res)  => {
-
-//   let id;
-//   if(req.params.id)
-//     id = req.params.id;
-
-//     var set = {
-//     id: req.body.id,
-//     name: req.body.name,
-//     barCode: req.body.barCode,
-//     color: req.body.color,
-//     quantity: req.body.quantity,
-//     productImageUrl: req.body.productImageUrl,
-//     price: req.body.price
-//   }
-//   console.log(set);
-
-//   await editOrAddProductInDB(id, set);
-//}

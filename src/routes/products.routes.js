@@ -9,13 +9,8 @@ router.get("/", fetchProducts);
 
 router.post("/", async function(req, res, next) {
 
-   console.log(req.body.filterBy);
-   console.log(req.body.filterValue);
-
    await fetchProducts(req, res);
 });
-
-// router.get("/Edit/:id", fetchProduct);
 
 router.get("/Edit/:id", async function(req, res, next) {
 
