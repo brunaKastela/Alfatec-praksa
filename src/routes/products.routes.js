@@ -7,10 +7,7 @@ const router = Router();
 
 router.get("/", fetchProducts);
 
-router.post("/", async function(req, res, next) {
-
-   await fetchProducts(req, res);
-});
+router.post("/", fetchProducts);
 
 router.get("/Edit/:id", async function(req, res, next) {
 
@@ -19,7 +16,6 @@ router.get("/Edit/:id", async function(req, res, next) {
    let errParam = undefined;
    res.render('productAdd', {errMsg, errParam, product});
 });
-
 
 router.post("/Edit/:id", async function(req, res, next) {
 

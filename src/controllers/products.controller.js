@@ -1,6 +1,5 @@
 import {getAllData, getProduct, editProductInDB, deleteProductInDB, addProductInDB} from '../repository/db.repository.js'
 import * as helper from '../helpers/helper.js' 
-import {validateData} from '../middleware/error-handling.js'
 
 const limit = 10;
 
@@ -42,10 +41,8 @@ export const fetchProducts = async (req, res)  => {
           if(property == filterBy) {
             if(filterBy != 'price' && filterBy != 'quantity' && item[property].toString().toLowerCase().includes(filterValue.toString().toLowerCase())) {
               tableData.push(item);
-              console.log("Pushed")
             } else if ((filterBy == 'price' || filterBy == 'quantity') && filterValue == item[property]) {
               tableData.push(item);
-              console.log("Pushed")
             } 
           }
         }

@@ -9,10 +9,11 @@
    <link rel="stylesheet" type="text/css" href="/styles/main.css" />
    <title>Product Edit</title>
    <script>
+
       const highlightErrors = () => {
          const allElements = document.getElementsByClassName("input-area");
          
-         for (const element of allElements) {   
+         for (const element of allElements) {
             text = element.getAttribute('id');
             var errParam = document.getElementById('errParam').innerHTML;
             if(errParam.includes(text)) {
@@ -22,7 +23,6 @@
             }
          }
       }
-   
    </script>
 </head>
    <body onload="highlightErrors()">
