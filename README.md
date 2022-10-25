@@ -2,13 +2,12 @@
 # Aplikacija za inventar suvenira
 
   
+Jednostavna aplikacija za prikaz inventara prodavaonice suvenira. Korišteni su slijedeći alati:
 
-Ova aplikacija će poslužiti kao kostur zadatka koji će se rješavati za praksu. Za pokretanje i rješavanje zadatka potrebno je instalirati slijedeće alate:
-
- 1. Node.js -> [Download | Node.js](https://nodejs.org/en/download/)
- 2. MongoDb -> [MongoDB Community Download | MongoDB](https://www.mongodb.com/try/download/community)
- 3. Compass -> [MongoDB Compass | MongoDB](https://www.mongodb.com/products/compass)
- 4. Postman ->  [Postman download](https://www.postman.com/downloads/)
+ 1. Node.js
+ 2. MongoDb
+ 3. Compass
+ 4. Postman
 
 Nakon instaliranja Nodejs-a potrebno je instalirati module u package jsonu naredbom
 	`npm install`
